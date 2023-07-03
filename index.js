@@ -202,6 +202,6 @@ cron.schedule(process.env.CRON_REMINDER_HL_TB, () => {
 });
 
 var currenttimestamp = Math.floor((Date.now() ) /1000);
-let currenttime = new Date(currenttimestamp * 1000).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit"})
-let start_time_weekday_day_month = new Date(currenttimestamp * 1000).toLocaleDateString(locale,{  weekday: 'long', month: 'long', day: '2-digit' })
+let currenttime = new Date(currenttimestamp * 1000).toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit"})
+let start_time_weekday_day_month = new Date(currenttimestamp * 1000).toLocaleDateString("sv-SE",{  weekday: 'long', month: 'long', day: '2-digit' })
 console.log("Started at: " + currenttime + ', ' + start_time_weekday_day_month)
