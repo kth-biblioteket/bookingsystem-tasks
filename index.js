@@ -162,7 +162,7 @@ cron.schedule(process.env.CRON_REMINDER_GRB_RS, () => {
 cron.schedule(process.env.CRON_REMINDER_HL_TB, () => {
     let config
 
-    var currenttime = new Date();
+    let currenttime = new Date();
     
     //Sätt dag till nästa och sekunder/minuter till 0
     currenttime.setDate(currenttime.getDate() + 1 );
@@ -212,6 +212,7 @@ console.log("Started at: " + currenttime + ', ' + start_time_weekday_day_month)
 if (process.env.ENVIRONMENT == 'development') {
     let config
     
+    let currenttime = new Date();
     //Sätt dag till nästa och sekunder/minuter till 0
     currenttime.setDate(currenttime.getDate() + 1 );
     
