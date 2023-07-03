@@ -107,8 +107,7 @@ async function sendMail(booking, system, confirmation_code) {
             confirm_url: process.env.CONFIRM_URL,
             edit_entry_url: process.env.EDIT_ENTRY_URL,
             system: system,
-            confirmation_code, confirmation_code,
-            test: "Måndag"
+            confirmation_code, confirmation_code
         },
         generateTextFromHTML: true
     };
@@ -206,37 +205,3 @@ var currenttimestamp = Math.floor((Date.now() ) /1000);
 let currenttime = new Date(currenttimestamp * 1000).toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit"})
 let start_time_weekday_day_month = new Date(currenttimestamp * 1000).toLocaleDateString("sv-SE",{  weekday: 'long', month: 'long', day: '2-digit' })
 console.log("Started at: " + currenttime + ', ' + start_time_weekday_day_month)
-
-
-// Testmail för dev
-if (process.env.ENVIRONMENT == 'development') {
-    let config
-    
-    let currenttime = new Date();
-    //Sätt dag till nästa och sekunder/minuter till 0
-    currenttime.setDate(currenttime.getDate() + 1 );
-    
-    //Timestamp imorgon 00:00
-    currenttime.setHours(0)
-    currenttime.setMinutes(0)
-    currenttime.setSeconds(0)
-    let timestampnextday_from = Math.floor(currenttime.getTime()/1000)
-
-    //Timestamp imorgon 23:59
-    currenttime.setHours(23)
-    currenttime.setMinutes(59)
-    currenttime.setSeconds(59)
-    let timestampnextday_to = Math.floor(currenttime.getTime()/1000)
-
-    //Grupprum
-    config = {
-        "system": "grouprooms",
-        "from_time": timestampnextday_from,//Nästa heltimme
-        "end_time": timestampnextday_to,//Nästa heltimme
-        "status" : 4,
-        "type" : "I",
-        "mail": "tholind@kth.se"
-    }
-    sendReminder(config)
-
-}
