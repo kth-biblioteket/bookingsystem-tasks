@@ -25,7 +25,7 @@ async function sendReminder(config) {
         if (updatewithconfirmcode.data.affectedRows == 1) {
             //success
             //Skicka mail till den som bokat
-            let mailresponse = await sendMail(booking);
+            let mailresponse = await sendMail(booking, config.system, confirmation_code);
             //Om mailet går bra sätt reminded = 1 på bokningen
             if (mailresponse) {
                 let updatereminded = await axios.put(`${process.env.BOOKINGSSYSTEM_API_URL}/entrysetreminded/${config.system}/${booking.entry_id}`,
@@ -40,7 +40,7 @@ async function sendReminder(config) {
     });
 }
 
-async function sendMail(booking) {
+async function sendMail(booking, system, confirmation_code) {
     const handlebarOptions = {
         viewEngine: {
             partialsDir: path.resolve('./templates/'),
@@ -105,7 +105,9 @@ async function sendMail(booking) {
             confirm_start_time: confirm_start_time,
             confirm_end_time: confirm_end_time,
             confirm_url: process.env.CONFIRM_URL,
-            edit_entry_url: process.env.EDIT_ENTRY_URL
+            edit_entry_url: process.env.EDIT_ENTRY_URL,
+            system: system,
+            confirmation_code, confirmation_code
         },
         generateTextFromHTML: true
     };
