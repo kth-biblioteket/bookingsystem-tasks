@@ -95,6 +95,7 @@ async function sendMail(booking) {
         context:{
             entry_id: booking.entry_id,
             room_number: booking.room_number,
+            room_name: booking.room_name,
             start_time_hh_mm: start_time_hh_mm,
             end_time_hh_mm: end_time_hh_mm,
             start_time_weekday_day_month: start_time_weekday_day_month,
