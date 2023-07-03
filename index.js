@@ -107,7 +107,8 @@ async function sendMail(booking, system, confirmation_code) {
             confirm_url: process.env.CONFIRM_URL,
             edit_entry_url: process.env.EDIT_ENTRY_URL,
             system: system,
-            confirmation_code, confirmation_code
+            confirmation_code, confirmation_code,
+            test: "Måndag"
         },
         generateTextFromHTML: true
     };
