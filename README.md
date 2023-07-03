@@ -1,6 +1,6 @@
 # KTH Biblioteket Bookingsystem Tasks
 
-## Skicka påminnelsemail etc
+- Skicka påminnelsemail etc
 
 ## Funktioner
 Startas i en Dockercontainer
