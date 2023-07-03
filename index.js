@@ -122,7 +122,7 @@ async function sendMail(booking) {
 cron.schedule(process.env.CRON_REMINDER_GRB_RS, () => {
     let config
 
-    var currenttime = new Date();
+    let currenttime = new Date();
     //Timestamp now
     let timestampnow = Math.floor(currenttime.getTime()/1000)
     //Sätt timme till nästa och sekunder/minuter till 0
@@ -197,3 +197,6 @@ cron.schedule(process.env.CRON_REMINDER_HL_TB, () => {
     }
     sendReminder(config)
 });
+
+let currenttime = new Date();
+console.log("Started at: " + currenttime)
