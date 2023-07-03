@@ -66,7 +66,7 @@ async function sendMail(booking, system, confirmation_code) {
     if (booking.lang.toUpperCase() == "EN") {
         template = 'email_en'
         subject = process.env.MAILFROM_SUBJECT_EN
-        locale = 'us-EN'
+        locale = 'en-GB'
     }
 
     let confirm_time_hh_mm = new Date(booking.start_time * 1000)
