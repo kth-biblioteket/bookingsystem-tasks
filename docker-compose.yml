@@ -1,0 +1,15 @@
+version: "3.6"
+
+services:
+  bookingsystem-tasks:
+    container_name: "bookingsystem-tasks"
+    image: ghcr.io/kth-biblioteket/bookingsystem-tasks:${REPO_TYPE}
+    env_file:
+      - bookingsystem-tasks.env
+    restart: "always"
+    networks:
+      - "apps-net"
+
+networks:
+  apps-net:
+    external: true

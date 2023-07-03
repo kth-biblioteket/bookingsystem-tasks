@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+   <div>Hi!</div>
+    </br>
+    <div>You have booked room {{room_number}} , from {{start_time_hh_ss}} to {{end_time_hh_ss}} , {{start_time_weekday_day_month}} {{start_time_weekday}} {{start_time_day}} {{start_time_month}}</div>
+    </br>
+    <div>The confirmation time for your booking has started and goes on from {{confirm_start_time}} to {{confirm_end_time}} </div>
+    </br>
+    <div>
+        <table border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td align="center" style="border-radius: 30px;" bgcolor="#B0C92B">
+                        <a style="padding: 15px 25px; border-radius: 30px; border: 1px solid #B0C92B; border-image: none; color: rgb(255, 255, 255); font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold;text-decoration: none; display: inline-block;" 
+                            href="{{confirm_url}}/{{system}}/{{confirmation_code}}">
+                            Confirm your booking
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </br>
+    <div><a href="{{edit_entry_url}}?id={{entry_id}}&lang=sv">Gå till din bokning</a></div>
+    </br>
+    <div><img src="cid:map" alt="map"></div>
+    </br>
+    <div>Kind regards</div>
+    </br>
+    <div>KTH Library</div>
+    <div>08 - 790 70 88</div>
+    <div>www.kth.se/en/biblioteket</div>
+</body>
+</html>
