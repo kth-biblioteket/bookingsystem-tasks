@@ -204,4 +204,3 @@ cron.schedule(process.env.CRON_REMINDER_HL_TB, () => {
 let currenttime = new Date(currenttimestamp * 1000).toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit"})
 let start_time_weekday_day_month = new Date(booking.start_time * 1000).toLocaleDateString(locale,{  weekday: 'long', month: 'long', day: '2-digit' })
 console.log("Started at: " + currenttime + ' , ' + start_time_weekday_day_month)
-)
