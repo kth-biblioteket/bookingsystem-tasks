@@ -13,7 +13,6 @@ const hbs = require('nodemailer-express-handlebars')
 async function sendReminder(config) {
     //Hämta aktuella bokningar som ska bli påminda
     let bookings = await axios.get(`${process.env.BOOKINGSSYSTEM_API_URL}/reminderbookings/${config.system}/${config.from_time}/${config.end_time}/${config.status}/${config.type}`)
-    console.log(bookings.data)
     bookings.data.forEach(async booking => {
         //För varje bokning uppdatera bokningen med en confirmation_code(för att kunna kvittera med ett enda klick på länk/knapp)
         let confirmation_code = crypto.randomBytes(64).toString('hex');
@@ -180,7 +179,7 @@ cron.schedule(process.env.CRON_REMINDER_HL_TB, () => {
 
     // Talbok
     config = {
-        "type": "talbok",
+        "system": "talbok",
         "from_time": timestampnextday_from,
         "end_time": timestampnextday_to,
         "status" : 0,
@@ -191,7 +190,7 @@ cron.schedule(process.env.CRON_REMINDER_HL_TB, () => {
 
     // Handledning
     config = {
-        "type": "handledning",
+        "system": "handledning",
         "from_time": timestampnextday_from,
         "end_time": timestampnextday_to,
         "status" : 0,
