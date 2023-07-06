@@ -22,9 +22,11 @@ services:
   bookingsystem-tasks:
     container_name: "bookingsystem-tasks"
     image: ghcr.io/kth-biblioteket/bookingsystem-tasks:${REPO_TYPE}
+    restart: "always"
+    environment:
+      - TZ=${TZ}
     env_file:
       - bookingsystem-tasks.env
-    restart: "always"
     networks:
       - "apps-net"
 
