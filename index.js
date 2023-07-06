@@ -24,7 +24,7 @@ async function sendReminder(config) {
         if (updatewithconfirmcode.data.affectedRows == 1) {
             //success
             //Skicka mail till den som bokat
-            let mailresponse = await sendMail(booking, config.system, confirmation_code);
+            let mailresponse = await sendMail(booking, config, confirmation_code);
             //Om mailet går bra sätt reminded = 1 på bokningen
             if (mailresponse) {
                 let updatereminded = await axios.put(`${process.env.BOOKINGSSYSTEM_API_URL}/entrysetreminded/${config.system}/${booking.entry_id}`,
@@ -39,7 +39,7 @@ async function sendReminder(config) {
     });
 }
 
-async function sendMail(booking, system, confirmation_code) {
+async function sendMail(booking, config, confirmation_code) {
     const handlebarOptions = {
         viewEngine: {
             partialsDir: path.resolve('./templates/'),
@@ -59,12 +59,12 @@ async function sendMail(booking, system, confirmation_code) {
     transporter.use('compile', hbs(handlebarOptions))
 
     let mailoptions = {}
-    let template = 'email_sv'
-    let subject = process.env.MAILFROM_SUBJECT_SV
+    let template = `email_${config.system}_sv`
+    let subject = config.subject_sv
     let locale = 'sv-SE'
     if (booking.lang.toUpperCase() == "EN") {
-        template = 'email_en'
-        subject = process.env.MAILFROM_SUBJECT_EN
+        template = `email_${config.system}_en`
+        subject = config.subject_en
         locale = 'en-GB'
     }
 
@@ -105,14 +105,14 @@ async function sendMail(booking, system, confirmation_code) {
             confirm_end_time: confirm_end_time,
             confirm_url: process.env.CONFIRM_URL,
             edit_entry_url: process.env.EDIT_ENTRY_URL,
-            system: system,
+            system: config.system,
             confirmation_code, confirmation_code
         },
         generateTextFromHTML: true
     };
 
     try {
-        let contactmemailinfo = await transporter.sendMail(mailoptions);
+        let mailresponse = await transporter.sendMail(mailoptions);
         return true
     } catch (err) {
         console.log(err.response)
@@ -121,7 +121,7 @@ async function sendMail(booking, system, confirmation_code) {
 }
 
 // Grupprum och Resursrum
-cron.schedule(process.env.CRON_REMINDER_GRB_RS, () => {
+cron.schedule(process.env.CRON_REMINDER_EVERYHOUR, () => {
     let config
 
     let currenttime = new Date();
@@ -141,6 +141,8 @@ cron.schedule(process.env.CRON_REMINDER_GRB_RS, () => {
         "end_time": timestampnexthour,//Nästa heltimme
         "status" : 4,
         "type" : "I",
+        "subject_sv": "Bekräfta ditt grupprum!",
+        "subject_en": "Confirm your group study room!",
         "mail": "tholind@kth.se"
     }
     sendReminder(config)
@@ -151,13 +153,14 @@ cron.schedule(process.env.CRON_REMINDER_GRB_RS, () => {
         "end_time": timestampnexthour,//Nästa heltimme
         "status" : 4,
         "type" : "I",
+        "subject_sv": "Bekräfta din lässtudio!",
+        "subject_en": "Confirm your reading studio!",
         "mail": "tholind@kth.se"
     }
     sendReminder(config)
 });
 
-//Handledning och Talbok
-cron.schedule(process.env.CRON_REMINDER_HL_TB, () => {
+cron.schedule(process.env.CRON_REMINDER_DAILY, () => {
     let config
 
     let currenttime = new Date();
@@ -184,17 +187,8 @@ cron.schedule(process.env.CRON_REMINDER_HL_TB, () => {
         "end_time": timestampnextday_to,
         "status" : 0,
         "type" : "I",
-        "mail": "tholind@kth.se"
-    }
-    sendReminder(config)
-
-    // Handledning
-    config = {
-        "system": "handledning",
-        "from_time": timestampnextday_from,
-        "end_time": timestampnextday_to,
-        "status" : 0,
-        "type" : "I",
+        "subject_sv": "Påminnelse om talboksintroduktion",
+        "subject_en": "Reminder of introduction to talking books",
         "mail": "tholind@kth.se"
     }
     sendReminder(config)

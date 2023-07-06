@@ -46,8 +46,8 @@ API_KEY_WRITE=xxxxxx
 BOOKINGSSYSTEM_API_URL=bookingsystem-api/v1
 CONFIRM_URL=https://api-ref.lib.kth.se/entry/confirm
 EDIT_ENTRY_URL=https://apps-ref.lib.kth.se/mrbsgrupprum/edit_entry.php
-CRON_REMINDER_GRB_RS=45 * * * *
-CRON_REMINDER_HL_TB=0 20 * * *
+CRON_REMINDER_EVERYHOUR=45 * * * *
+CRON_REMINDER_DAILY=0 20 * * *
 ENVIRONMENT=development
 LOG_LEVEL=debug
 ```

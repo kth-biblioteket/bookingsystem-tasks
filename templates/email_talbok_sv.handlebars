@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+   <div>Hej!</div>
+    </br>
+    <div>Du har bokat talboksintroduktion från {{start_time_hh_mm}} till {{end_time_hh_mm}}, {{start_time_weekday_day_month}}</div>
+    </br>
+    <div>Denna länk leder till din bokning, där du kan ändra eller avboka den vid behov.</div>
+    </br>
+    <div>
+        <table border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td align="center" style="border-radius: 30px;" bgcolor="#B0C92B">
+                        <a style="padding: 15px 25px; border-radius: 30px; border: 1px solid #B0C92B; border-image: none; color: rgb(255, 255, 255); font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold;text-decoration: none; display: inline-block;" 
+                        href="{{edit_entry_url}}?id={{entry_id}}&lang=sv">Gå till din bokning</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </br>
+    <div><img src="cid:map" alt="map"></div>
+    </br>
+    <div>Vänliga hälsningar</div>
+    </br>
+    <div>KTH Biblioteket</div>
+    <div>08 - 790 70 88</div>
+    <div>www.kth.se/biblioteket</div>
+</body>
+</html>
