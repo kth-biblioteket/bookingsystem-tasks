@@ -160,6 +160,7 @@ cron.schedule(process.env.CRON_REMINDER_EVERYHOUR, () => {
     sendReminder(config)
 });
 
+// Talbok
 cron.schedule(process.env.CRON_REMINDER_DAILY, () => {
     let config
 
