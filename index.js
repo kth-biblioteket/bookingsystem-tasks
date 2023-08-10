@@ -143,7 +143,7 @@ cron.schedule(process.env.CRON_REMINDER_EVERYHOUR, () => {
         "type" : "I",
         "subject_sv": "Bekräfta ditt grupprum!",
         "subject_en": "Confirm your group study room!",
-        "mail": "tholind@kth.se"
+        "mail": ""
     }
     sendReminder(config)
     //Lässtudio
@@ -155,7 +155,7 @@ cron.schedule(process.env.CRON_REMINDER_EVERYHOUR, () => {
         "type" : "I",
         "subject_sv": "Bekräfta din lässtudio!",
         "subject_en": "Confirm your reading studio!",
-        "mail": "tholind@kth.se"
+        "mail": ""
     }
     sendReminder(config)
 });
